@@ -5,6 +5,7 @@ const inputText = document.querySelector('.field__fill-series');
 const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list-container');
 let favs=[];
+let btnDelete =[];
 
 function reloadfav(){
   if (JSON.parse(localStorage.getItem('favorits'))){
@@ -14,13 +15,16 @@ function reloadfav(){
       <img class="img-fav" src="${item.img}">
       <h3>${item.name}</h3>
       <p class="id-list" >${item.id}</p>
-      <button>X</button>
+      <button class="btn-delet ${item.id}">X</button>
       </li>`;
     }
-    //const liFav =document.querySelectorAll('fav-list');
-    //liFav.addEventListener
   }
+  btnDelete= document.querySelectorAll('.btn-delet');
 
+  for (const item of btnDelete){
+    item.addEventListener('click',deleteSeries);
+  }
+  console.log(btnDelete);
 }
 reloadfav();
 
@@ -60,10 +64,15 @@ function favSeries(event){
     <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
     <p class="id-list" >${item.id}</p>
-    <button>X</button>
+    <button class="btn-delet ${item.id}">X</button>
     </li>`;
   }
+  btnDelete= document.querySelectorAll('.btn-delet');
 
+  for (const item of btnDelete){
+    item.addEventListener('click',deleteSeries);
+  }
+  console.log(btnDelete);
   if (favs.length === 0){
     localStorage.removeItem('favorits');
   }
@@ -111,6 +120,7 @@ function seriesSearch(){
             }
           }
         }
+
       }
 
 
@@ -121,9 +131,10 @@ function seriesSearch(){
     });
 }
 
-//function eliminarSerie(){
+function deleteSeries(event){
+  console.log(event.currentTarge);
+}
 
-//}
 function enterYes(event){
   if (event.keyCode === 13){
     seriesSearch();
