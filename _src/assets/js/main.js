@@ -22,9 +22,10 @@ reloadfav();
 function favSeries(event){
 
   const item = event.currentTarget;
-  const idList =event.currentTarget.id;
+  const idList =event.currentTarget.querySelector('.id-list').innerHTML;
   const nameList = event.currentTarget.querySelector('.name-serie').innerHTML;
   const imgList = event.currentTarget.querySelector('.img-list').src;
+  console.log(idList);
   item.classList.toggle('serie-fav');
   const object ={id:idList,name:nameList,img:imgList};
   if (JSON.parse(localStorage.getItem('favorits'))){
@@ -38,7 +39,7 @@ function favSeries(event){
   } else {
     let index = -1;
     for(let i = 0; i < favs.length; i++) {
-      if (favs[i].name === nameList) {
+      if (favs[i].id === idList) {
         index = i;
         break;
       }
@@ -71,19 +72,26 @@ function seriesSearch(){
     .then(data => {
       seriesList.innerHTML='';
       const arrbasic =[];
+      console.log(data);
+      if (data.length === 0){
+        seriesList.innerHTML ='No se ha podido conseguir resultado de tu busqueda';
+      }
       for (const item of data){
-        arrbasic.push(item.show.name);
+        arrbasic.push(`${parseInt(item.show.id)}`);
+
         if (item.show.image === null){
           seriesList.innerHTML += `
-          <li class="list-item" data-id:"${parseInt(item.show.id)}">
+          <li class="list-item" id:"${parseInt(item.show.id)}">
           <img class="img-list" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
           <h3 class="name-serie">${item.show.name}</h3>
+          <p class="id-list">${item.show.id}</p>
           </li>`;
         }else {
           seriesList.innerHTML += `
-          <li class="list-item" data-id:"${parseInt(item.show.id)}">
+          <li class="list-item" id:"${parseInt(item.show.id)}">
           <img class="img-list" src="${item.show.image.medium}">
           <h3 class="name-serie">${item.show.name}</h3>
+          <p class="id-list">${item.show.id}</p>
           </li>`;
         }
       }
@@ -94,7 +102,8 @@ function seriesSearch(){
         const favsUnos=JSON.parse(localStorage.getItem('favorits'));
         for (let i=0; i<arrbasic.length ;i++){
           for (const iten of favsUnos){
-            if(arrbasic[i]=== iten.name){
+            console.log(iten.id);
+            if(arrbasic[i]=== iten.id){
               itemList[i].classList.add('serie-fav');
             }
           }
@@ -108,6 +117,7 @@ function seriesSearch(){
 
     });
 }
+
 
 
 searchBtn.addEventListener('click',seriesSearch);
