@@ -6,7 +6,7 @@ const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list');
 let favs=[];
 
-function reloadfav(){
+/*function reloadfav(){
   if (JSON.parse(localStorage.getItem('favorits'))){
     const favoritesP =JSON.parse(localStorage.getItem('favorits'));
     console.log(favoritesP);
@@ -19,7 +19,7 @@ function reloadfav(){
     }
   }
 }
-reloadfav();
+reloadfav();*/
 
 function favSeries(event){
 
@@ -29,9 +29,9 @@ function favSeries(event){
   const imgList = event.currentTarget.querySelector('.img-list').src;
   item.classList.toggle('serie-fav');
   const object ={id:idList,name:nameList,img:imgList};
-
-    favs=JSON.parse(localStorage.getItem('favorits'));
-
+  if (JSON.parse(localStorage.getItem('favorits'))){
+  favs=JSON.parse(localStorage.getItem('favorits'));
+  }
 
   if (item.classList.contains('serie-fav')) {
     if (favs.includes(object) === false) {
