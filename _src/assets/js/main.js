@@ -35,7 +35,7 @@ function favSeries(event){
   favItem.innerHTML='';
   for (const item of favs){
     favItem.innerHTML +=`<li>
-    <img src="${item.img}">
+    <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
     </li>`;
   }

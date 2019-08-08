@@ -1,0 +1,18 @@
+.main-container{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.search-container{
+  width: 300px;
+}
+.series-container{
+  grid-column:2/3;
+}
+.series-list{
+  display: flex;
+  flex-wrap:wrap;
+  list-style: none;
+}
+.img-fav{
+  width: 80px;
+}
