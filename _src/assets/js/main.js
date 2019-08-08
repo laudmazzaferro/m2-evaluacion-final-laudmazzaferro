@@ -27,7 +27,6 @@ function favSeries(event){
         break;
       }
     }
-
     if (index > -1) {
       favs.splice(index, 1);
     }
