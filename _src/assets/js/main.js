@@ -3,20 +3,24 @@ const seriesList = document.querySelector('.series-list');
 const searchBtn = document.querySelector('.search-btn');
 const inputText = document.querySelector('.field__fill-series');
 const api = 'http://api.tvmaze.com/search/shows?q=';
-let favItem = document.querySelector('.fav-list');
+let favItem = document.querySelector('.fav-list-container');
 let favs=[];
 
 function reloadfav(){
   if (JSON.parse(localStorage.getItem('favorits'))){
     const favoritesP =JSON.parse(localStorage.getItem('favorits'));
     for (const item of favoritesP){
-      favItem.innerHTML +=`<li>
+      favItem.innerHTML +=`<li class="fav-list">
       <img class="img-fav" src="${item.img}">
       <h3>${item.name}</h3>
       <p class="id-list" >${item.id}</p>
+      <button>X</button>
       </li>`;
     }
+    //const liFav =document.querySelectorAll('fav-list');
+    //liFav.addEventListener
   }
+
 }
 reloadfav();
 
@@ -52,17 +56,17 @@ function favSeries(event){
 
   favItem.innerHTML='';
   for (const item of favs){
-    favItem.innerHTML +=`<li>
+    favItem.innerHTML +=`<li class="fav-list">
     <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
     <p class="id-list" >${item.id}</p>
+    <button>X</button>
     </li>`;
   }
 
   if (favs.length === 0){
     localStorage.removeItem('favorits');
   }
-  //console.log(favs);
 }
 
 function seriesSearch(){
@@ -117,6 +121,14 @@ function seriesSearch(){
     });
 }
 
+//function eliminarSerie(){
 
+//}
+function enterYes(event){
+  if (event.keyCode === 13){
+    seriesSearch();
+  }
+}
 
 searchBtn.addEventListener('click',seriesSearch);
+inputText.addEventListener('keyup',enterYes);
