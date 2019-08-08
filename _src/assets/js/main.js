@@ -15,7 +15,7 @@ function reloadfav(){
       <img class="img-fav" src="${item.img}">
       <h3>${item.name}</h3>
       <p class="id-list" >${item.id}</p>
-      <button class="btn-delet ${item.id}">X</button>
+      <button class="btn-delet">${item.id}</button>
       </li>`;
     }
   }
@@ -64,7 +64,7 @@ function favSeries(event){
     <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
     <p class="id-list" >${item.id}</p>
-    <button class="btn-delet ${item.id}">X</button>
+    <button class="btn-delet ">${item.id}</button>
     </li>`;
   }
   btnDelete= document.querySelectorAll('.btn-delet');
@@ -132,7 +132,20 @@ function seriesSearch(){
 }
 
 function deleteSeries(event){
-  console.log(event.currentTarge);
+  const favdelt =JSON.parse(localStorage.getItem('favorits'));
+  for (let i=0;i<favdelt.length; i++){
+    let index = -1;
+    if (favdelt[i].id === event.currentTarget.innerHTML){
+      index = i;
+      break;
+    }
+    if (index > -1) {
+      favdelt.splice(index, 1);
+    }
+    localStorage.setItem('favorits', JSON.stringify(favdelt));
+    console.log(favdelt);
+    //if (event.currentTarget.innerHTML === item.id)
+  }
 }
 
 function enterYes(event){
