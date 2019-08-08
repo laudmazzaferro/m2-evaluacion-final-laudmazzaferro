@@ -31,8 +31,10 @@ function favSeries(event){
       favs.splice(index, 1);
     }
   }
+  localStorage.setItem('favorits', JSON.stringify(favs));
+  let favorites = JSON.parse(localStorage.getItem('tasks'));
   favItem.innerHTML='';
-  for (const item of favs){
+  for (const item of favorites){
     favItem.innerHTML +=`<li>
     <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
@@ -52,10 +54,10 @@ function seriesSearch(){
         if (item.show.image === null){
           console.log(item.show.id);
           seriesList.innerHTML += `
-        <li class="list-item" id:"${item.show.id}">
-        <img class="img-list" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
-        <h3 class="name-serie">${item.show.name}</h3>
-        </li>`;
+          <li class="list-item" id:"${item.show.id}">
+          <img class="img-list" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
+          <h3 class="name-serie">${item.show.name}</h3>
+          </li>`;
 
         }else {
           seriesList.innerHTML += `
@@ -65,6 +67,7 @@ function seriesSearch(){
         </li>`;
         }
       }
+
       const itemList =document.querySelectorAll('.list-item');
 
       for (let i=0;i<itemList.length;i++) {
