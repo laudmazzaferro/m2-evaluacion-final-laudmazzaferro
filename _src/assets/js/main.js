@@ -6,6 +6,21 @@ const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list');
 let favs=[];
 
+function reloadfav(){
+  if (JSON.parse(localStorage.getItem('favorits'))){
+    const favoritesP =JSON.parse(localStorage.getItem('favorits'));
+    console.log(favoritesP);
+    console.log('hola');
+    for (const item of favoritesP){
+      favItem.innerHTML +=`<li>
+      <img class="img-fav" src="${item.img}">
+      <h3>${item.name}</h3>
+      </li>`;
+    }
+  }
+}
+reloadfav();
+
 function favSeries(event){
 
   const item = event.currentTarget;
@@ -14,6 +29,9 @@ function favSeries(event){
   const imgList = event.currentTarget.querySelector('.img-list').src;
   item.classList.toggle('serie-fav');
   const object ={id:idList,name:nameList,img:imgList};
+
+    favs=JSON.parse(localStorage.getItem('favorits'));
+
 
   if (item.classList.contains('serie-fav')) {
     if (favs.includes(object) === false) {
@@ -32,15 +50,30 @@ function favSeries(event){
     }
   }
   localStorage.setItem('favorits', JSON.stringify(favs));
-  let favorites = JSON.parse(localStorage.getItem('tasks'));
+
+  /*if (JSON.parse(localStorage.getItem('favorits')) !== null){
+    const favoritesP =JSON.parse(localStorage.getItem('favorits'));
+    for (const item of favs){
+      for (const iten of favoritesP){
+        if (item.name === iten.name) {
+          item.classList.add('serie-fav');
+        }
+      }
+    }
+  }*/
+
   favItem.innerHTML='';
-  for (const item of favorites){
+  for (const item of favs){
     favItem.innerHTML +=`<li>
     <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
     </li>`;
   }
   console.log(favs);
+  if (favs.length === 0){
+    localStorage.removeItem('favorits');
+  }
+  //console.log(favs);
 }
 
 function seriesSearch(){
@@ -52,7 +85,7 @@ function seriesSearch(){
       seriesList.innerHTML='';
       for (const item of data){
         if (item.show.image === null){
-          console.log(item.show.id);
+          //console.log(item.show.id);
           seriesList.innerHTML += `
           <li class="list-item" id:"${item.show.id}">
           <img class="img-list" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
