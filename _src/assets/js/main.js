@@ -13,6 +13,7 @@ function reloadfav(){
       favItem.innerHTML +=`<li>
       <img class="img-fav" src="${item.img}">
       <h3>${item.name}</h3>
+      <p class="id-list" >${item.id}</p>
       </li>`;
     }
   }
@@ -25,7 +26,6 @@ function favSeries(event){
   const idList =event.currentTarget.querySelector('.id-list').innerHTML;
   const nameList = event.currentTarget.querySelector('.name-serie').innerHTML;
   const imgList = event.currentTarget.querySelector('.img-list').src;
-  console.log(idList);
   item.classList.toggle('serie-fav');
   const object ={id:idList,name:nameList,img:imgList};
   if (JSON.parse(localStorage.getItem('favorits'))){
@@ -55,6 +55,7 @@ function favSeries(event){
     favItem.innerHTML +=`<li>
     <img class="img-fav" src="${item.img}">
     <h3>${item.name}</h3>
+    <p class="id-list" >${item.id}</p>
     </li>`;
   }
 
@@ -72,7 +73,6 @@ function seriesSearch(){
     .then(data => {
       seriesList.innerHTML='';
       const arrbasic =[];
-      console.log(data);
       if (data.length === 0){
         seriesList.innerHTML ='No se ha podido conseguir resultado de tu busqueda';
       }
@@ -102,7 +102,6 @@ function seriesSearch(){
         const favsUnos=JSON.parse(localStorage.getItem('favorits'));
         for (let i=0; i<arrbasic.length ;i++){
           for (const iten of favsUnos){
-            console.log(iten.id);
             if(arrbasic[i]=== iten.id){
               itemList[i].classList.add('serie-fav');
             }
