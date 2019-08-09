@@ -12,7 +12,7 @@ function reloadfav(){
     const favoritesP =JSON.parse(localStorage.getItem('favorits'));
     for (const item of favoritesP){
       favItem.innerHTML +=`<li class="fav-list">
-      <img class="img-fav" src="${item.img}">
+      <img class="img-fav" alt="Serie ${item.name}" src="${item.img}">
       <h3>⭐️ ${item.name} ⭐️</h3>
       <p class="id-list" >${item.id}</p>
       </li>`;
@@ -54,7 +54,7 @@ function favSeries(event){
   favItem.innerHTML='';
   for (const item of favs){
     favItem.innerHTML +=`<li class="fav-list">
-    <img class="img-fav" src="${item.img}">
+    <img class="img-fav" alt="Serie ${item.name}" src="${item.img}">
     <h3>⭐️ ${item.name} ⭐️</h3>
     <p class="id-list" >${item.id}</p>
     </li>`;
@@ -82,14 +82,14 @@ function seriesSearch(){
         if (item.show.image === null){
           seriesList.innerHTML += `
           <li class="list-item" id:"${parseInt(item.show.id)}">
-          <img class="img-list" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
+          <img class="img-list" alt="Serie ${item.show.name}" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
           <h3 class="name-serie">${item.show.name}</h3>
           <p class="id-list">${item.show.id}</p>
           </li>`;
         }else {
           seriesList.innerHTML += `
           <li class="list-item" id:"${parseInt(item.show.id)}">
-          <img class="img-list" src="${item.show.image.medium}">
+          <img class="img-list" alt="Serie ${item.show.name}" src="${item.show.image.medium}">
           <h3 class="name-serie">${item.show.name}</h3>
           <p class="id-list">${item.show.id}</p>
           </li>`;
