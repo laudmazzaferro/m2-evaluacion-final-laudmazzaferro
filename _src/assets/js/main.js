@@ -1,10 +1,11 @@
 'use strict';
 const seriesList = document.querySelector('.series-list');
 const searchBtn = document.querySelector('.search-btn');
-const inputText = document.querySelector('.field__fill-series');
+let inputText = document.querySelector('.field__fill-series');
 const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list-container');
 let favs=[];
+const btnReset = document.querySelector('.reset-btn');
 /*let btnDelete =[];*/
 
 function reloadfav(){
@@ -155,5 +156,14 @@ function enterYes(event){
   }
 }
 
+function reset(){
+  inputText.value='';
+  seriesList.innerHTML='';
+  localStorage.removeItem('favorits');
+  favs=[];
+  favItem.innerHTML='';
+}
+
+btnReset.addEventListener('click',reset);
 searchBtn.addEventListener('click',seriesSearch);
 inputText.addEventListener('keyup',enterYes);
