@@ -3,10 +3,14 @@
   grid-template-columns: auto 1fr;
 }
 .search-container{
-  width: 300px;
+  width: 350px;
+  border-right: #701818 solid 5px;
+  padding: 20px;
 }
 .series-container{
   grid-column:2/3;
+  padding: 20px;
+  height: 100vh;
 }
 .series-list{
   display: flex;
@@ -17,13 +21,15 @@
   width: 80px;
 }
 .serie-fav{
-  background:pink;
+  background:#9e3b3b;
 }
 .list-item{
   text-align: center;
+  width: 200px;
 }
 .img-list{
-  width: 200;
+  margin-top:20px;
+  width: 150px;
 }
 .id-list{
   display: none;
@@ -46,3 +52,15 @@
   border-radius: 50%;
 
 }
+.fav-list-title{
+  margin: 20px 0 20px 0;
+  text-align: center;
+}
+.main__title{
+  margin: 20px 0 20px 0;
+}
+.field__fill-series{
+  width: 250px;
+}
+//.search-btn{
+//}
