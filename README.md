@@ -14,6 +14,7 @@ Para realizar la estructura básica del ejercicio se uso la base de gulp del Ada
 
 Al hacer clic sobre el botón de 'Buscar', nuestra aplicación debe conectarse al API abierto de TVMaze para búsqueda de series. El JSON que devuelve unapetición de búsqueda para ver qué datos de los que nos devuelve necesitamos. Para construir la URL de búsqueda se necesito recoger el texto que  introduce el usuario en el campo de búsqueda.
 
-En la siguiente direccion se encuentra el ejercicio =
+En la siguiente direccion se encuentra la aplicacion web = http://beta.adalab.es/m2-evaluacion-final-laudmazzaferro/
+
 
 
