@@ -5,7 +5,7 @@ const inputText = document.querySelector('.field__fill-series');
 const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list-container');
 let favs=[];
-let btnDelete =[];
+/*let btnDelete =[];*/
 
 function reloadfav(){
   if (JSON.parse(localStorage.getItem('favorits'))){
@@ -67,12 +67,12 @@ function favSeries(event){
     <button class="btn-delet ">${item.id}</button>
     </li>`;
   }
-  btnDelete= document.querySelectorAll('.btn-delet');
+  /*btnDelete= document.querySelectorAll('.btn-delet');
 
   for (const item of btnDelete){
     item.addEventListener('click',deleteSeries);
   }
-  console.log(btnDelete);
+  console.log(btnDelete);*/
   if (favs.length === 0){
     localStorage.removeItem('favorits');
   }
