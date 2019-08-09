@@ -17,6 +17,11 @@
   flex-wrap:wrap;
   list-style: none;
 }
+.title-btnReset{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .img-fav{
   width: 80px;
   border-radius: 10px;
@@ -65,7 +70,7 @@
 .field__fill-series{
   width: 250px;
 }
-.search-btn{
+.search-btn {
   -moz-appearance:inherit; -o-appearance:inherit;
   -ms-appearance:inherit;
   appearance:inherit;
@@ -74,4 +79,17 @@
   padding:5px;
   color: white;
   border:transparent;
+}
+.reset-btn{
+  -moz-appearance:inherit; -o-appearance:inherit;
+  -ms-appearance:inherit;
+  appearance:inherit;
+  -webkit-appearance:inherit;
+  background: black;
+  padding:5px;
+  color: white;
+  border:transparent;
+  height: 30px;
+  border-radius: 5px;
+  margin-right: 10px;
 }
