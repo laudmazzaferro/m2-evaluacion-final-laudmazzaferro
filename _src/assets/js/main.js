@@ -6,7 +6,6 @@ const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list-container');
 let favs=[];
 const btnReset = document.querySelector('.reset-btn');
-/*let btnDelete =[];*/
 
 function reloadfav(){
   if (JSON.parse(localStorage.getItem('favorits'))){
@@ -14,18 +13,11 @@ function reloadfav(){
     for (const item of favoritesP){
       favItem.innerHTML +=`<li class="fav-list">
       <img class="img-fav" src="${item.img}">
-      <h3>${item.name}</h3>
+      <h3>⭐️ ${item.name} ⭐️</h3>
       <p class="id-list" >${item.id}</p>
-      <button class="btn-delet">${item.id}</button>
       </li>`;
     }
   }
-  /*btnDelete= document.querySelectorAll('.btn-delet');
-
-  for (const item of btnDelete){
-    item.addEventListener('click',deleteSeries);
-  }
-  console.log(btnDelete);*/
 }
 reloadfav();
 
@@ -63,17 +55,11 @@ function favSeries(event){
   for (const item of favs){
     favItem.innerHTML +=`<li class="fav-list">
     <img class="img-fav" src="${item.img}">
-    <h3>${item.name}</h3>
+    <h3>⭐️ ${item.name} ⭐️</h3>
     <p class="id-list" >${item.id}</p>
-    <button class="btn-delet ">${item.id}</button>
     </li>`;
   }
-  /*btnDelete= document.querySelectorAll('.btn-delet');
 
-  for (const item of btnDelete){
-    item.addEventListener('click',deleteSeries);
-  }
-  console.log(btnDelete);*/
   if (favs.length === 0){
     localStorage.removeItem('favorits');
   }
@@ -132,23 +118,7 @@ function seriesSearch(){
     });
 }
 
-/*function deleteSeries(event){
-  const favdelt =JSON.parse(localStorage.getItem('favorits'));
-  for (let i=0;i<favdelt.length; i++){
-    let index = -1;
-    if (favdelt[i].id === event.currentTarget.innerHTML){
-      index = i;
-      console.log(i);
-      break;
-    }
-    if (index > -1) {
-      favdelt.splice(index, 1);
-    }
-    console.log(favdelt);
-    localStorage.setItem('favorits', JSON.stringify(favdelt));
-    //if (event.currentTarget.innerHTML === item.id)
-  }
-}*/
+
 
 function enterYes(event){
   if (event.keyCode === 13){

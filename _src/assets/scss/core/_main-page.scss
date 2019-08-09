@@ -25,6 +25,7 @@
 .img-fav{
   width: 80px;
   border-radius: 10px;
+  margin-right: 20px;
 }
 .serie-fav{
   background:#9e3b3b;
@@ -46,7 +47,7 @@
 .fav-list{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-top :10px;
 }
 .btn-delet {
   color: transparent;
