@@ -19,12 +19,12 @@ function reloadfav(){
       </li>`;
     }
   }
-  btnDelete= document.querySelectorAll('.btn-delet');
+  /*btnDelete= document.querySelectorAll('.btn-delet');
 
   for (const item of btnDelete){
     item.addEventListener('click',deleteSeries);
   }
-  console.log(btnDelete);
+  console.log(btnDelete);*/
 }
 reloadfav();
 
@@ -131,22 +131,23 @@ function seriesSearch(){
     });
 }
 
-function deleteSeries(event){
+/*function deleteSeries(event){
   const favdelt =JSON.parse(localStorage.getItem('favorits'));
   for (let i=0;i<favdelt.length; i++){
     let index = -1;
     if (favdelt[i].id === event.currentTarget.innerHTML){
       index = i;
+      console.log(i);
       break;
     }
     if (index > -1) {
       favdelt.splice(index, 1);
     }
-    localStorage.setItem('favorits', JSON.stringify(favdelt));
     console.log(favdelt);
+    localStorage.setItem('favorits', JSON.stringify(favdelt));
     //if (event.currentTarget.innerHTML === item.id)
   }
-}
+}*/
 
 function enterYes(event){
   if (event.keyCode === 13){
