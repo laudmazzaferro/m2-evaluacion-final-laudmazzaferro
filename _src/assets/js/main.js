@@ -19,12 +19,12 @@ function reloadfav(){
       <button class="btn-delet ">${item.id}</button>
       </li>`;
     }
-    /*btnDelete= document.querySelectorAll('.btn-delet');
+    btnDelete= document.querySelectorAll('.btn-delet');
 
     for (const item of btnDelete){
       item.addEventListener('click',deleteSeries);
     }
-    console.log(btnDelete);*/
+
   }
 }
 reloadfav();
@@ -73,38 +73,42 @@ function favSeries(event){
   for (const item of btnDelete){
     item.addEventListener('click',deleteSeries);
   }
-  console.log(btnDelete);
-  function deleteSeries(event){
-      const favdelt =JSON.parse(localStorage.getItem('favorits'));
-      let index = -1;
-      for (let i=0;i<favdelt.length; i++){
-        if (favdelt[i].id === event.currentTarget.innerHTML){
-          index = i;
-          console.log(i);
-          break;
-        }
-      }
-      if (index > -1) {
-        seriesList.innerHTML='';
-        console.log('holaaa');
-        favs.splice(index, 1);
-        favItem.innerHTML='';
-          for (const item of favs){
-          favItem.innerHTML +=`<li class="fav-list">
-          <img class="img-fav" src="${item.img}">
-          <h3>⭐️ ${item.name} ⭐️</h3>
-          <p class="id-list" >${item.id}</p>
-          <button class="btn-delet ">${item.id}</button>
-          </li>`;
-          }
-      }
-        localStorage.setItem('favorits', JSON.stringify(favs));
-        //(event.currentTarget.innerHTML === item.id)
-  }
+
+  localStorage.setItem('favorits', JSON.stringify(favs));
 
   if (favs.length === 0){
     localStorage.removeItem('favorits');
   }
+}
+
+function deleteSeries(event){
+  const favdelt =JSON.parse(localStorage.getItem('favorits'));
+  let index = -1;
+  for (let i=0;i<favdelt.length; i++){
+    if (favdelt[i].id === event.currentTarget.innerHTML){
+      index = i;
+      break;
+    }
+  }
+  if (index > -1) {
+    favs.splice(index, 1);
+    favItem.innerHTML='';
+    for (const item of favs){
+      favItem.innerHTML +=`<li class="fav-list">
+      <img class="img-fav" src="${item.img}">
+      <h3>⭐️ ${item.name} ⭐️</h3>
+      <p class="id-list" >${item.id}</p>
+      <button class="btn-delet ">${item.id}</button>
+      </li>`;
+    }
+  }
+
+  localStorage.setItem('favorits', JSON.stringify(favs));
+
+  if (favs.length === 0){
+    localStorage.removeItem('favorits');
+  }
+  seriesSearch();
 }
 
 function seriesSearch(){
@@ -149,7 +153,11 @@ function seriesSearch(){
             }
           }
         }
+        btnDelete= document.querySelectorAll('.btn-delet');
 
+        for (const item of btnDelete){
+          item.addEventListener('click',deleteSeries);
+        }
       }
 
       for (let i=0;i<itemList.length;i++) {
@@ -179,24 +187,4 @@ btnReset.addEventListener('click',reset);
 searchBtn.addEventListener('click',seriesSearch);
 inputText.addEventListener('keyup',enterYes);
 
-
-
-
-/*function deleteSeries(event){
-  const favdelt =JSON.parse(localStorage.getItem('favorits'));
-  for (let i=0;i<favdelt.length; i++){
-    let index = -1;
-    if (favdelt[i].id === event.currentTarget.innerHTML){
-      index = i;
-      console.log(i);
-      break;
-    }
-    if (index > -1) {
-      favdelt.splice(index, 1);
-    }
-    console.log(favdelt);
-    localStorage.setItem('favorits', JSON.stringify(favdelt));
-    //(event.currentTarget.innerHTML === item.id)
-  }
-}*/
 
