@@ -6,6 +6,8 @@ const api = 'http://api.tvmaze.com/search/shows?q=';
 let favItem = document.querySelector('.fav-list-container');
 let favs=[];
 const btnReset = document.querySelector('.reset-btn');
+const arrLang=['English', 'Spanish', 'Portuguese'];
+const log = document.querySelector('.log');
 
 function reloadfav(){
   if (JSON.parse(localStorage.getItem('favorits'))){
@@ -20,6 +22,9 @@ function reloadfav(){
   }
 }
 reloadfav();
+if (JSON.parse(localStorage.getItem('favorits'))){
+  favs=JSON.parse(localStorage.getItem('favorits'));
+}
 
 function favSeries(event){
 
@@ -29,9 +34,7 @@ function favSeries(event){
   const imgList = event.currentTarget.querySelector('.img-list').src;
   item.classList.toggle('serie-fav');
   const object ={id:idList,name:nameList,img:imgList};
-  if (JSON.parse(localStorage.getItem('favorits'))){
-    favs=JSON.parse(localStorage.getItem('favorits'));
-  }
+
 
   if (item.classList.contains('serie-fav')) {
     if (favs.includes(object) === false) {
@@ -63,6 +66,7 @@ function favSeries(event){
   if (favs.length === 0){
     localStorage.removeItem('favorits');
   }
+
 }
 
 function seriesSearch(){
@@ -77,7 +81,13 @@ function seriesSearch(){
         seriesList.innerHTML ='No se ha podido conseguir resultado de tu busqueda';
       }
       for (const item of data){
+        let rec ='';
         arrbasic.push(`${parseInt(item.show.id)}`);
+        for (const lang of arrLang){
+          if (lang === item.show.language){
+            rec ='recomendada' ;
+          }
+        }
 
         if (item.show.image === null){
           seriesList.innerHTML += `
@@ -86,6 +96,7 @@ function seriesSearch(){
           <h3 class="name-serie">${item.show.name}</h3>
           <p class="id-list">${item.show.id}</p>
           <p class="lang">${item.show.language}</p>
+          <p class="lang-rec">${rec}</p>
           </li>`;
         }else {
           seriesList.innerHTML += `
@@ -94,6 +105,7 @@ function seriesSearch(){
           <h3 class="name-serie">${item.show.name}</h3>
           <p class="id-list">${item.show.id}</p>
           <p class="lang">${item.show.language}</p>
+          <p class="lang-rec">${rec}</p>
           </li>`;
         }
       }
@@ -139,3 +151,10 @@ function reset(){
 btnReset.addEventListener('click',reset);
 searchBtn.addEventListener('click',seriesSearch);
 inputText.addEventListener('keyup',enterYes);
+
+function favConsole(){
+  console.log(`tiene ${favs.length} favoritos`);
+}
+
+log.addEventListener('click',favConsole);
+
