@@ -85,6 +85,7 @@ function seriesSearch(){
           <img class="img-list" alt="Serie ${item.show.name}" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV">
           <h3 class="name-serie">${item.show.name}</h3>
           <p class="id-list">${item.show.id}</p>
+          <p class="lang">${item.show.language}</p>
           </li>`;
         }else {
           seriesList.innerHTML += `
@@ -92,6 +93,7 @@ function seriesSearch(){
           <img class="img-list" alt="Serie ${item.show.name}" src="${item.show.image.medium}">
           <h3 class="name-serie">${item.show.name}</h3>
           <p class="id-list">${item.show.id}</p>
+          <p class="lang">${item.show.language}</p>
           </li>`;
         }
       }
